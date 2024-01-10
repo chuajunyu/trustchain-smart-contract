@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "aelf/core.proto";
+import "aelf/options.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "Protobuf/reference/acs12.proto";
+// The namespace of this class
+option csharp_namespace = "AElf.Contracts.TrustChain";
+
+service TrustChain {
+  // The name of the state class the smart contract is going to use to access blockchain state
+  option (aelf.csharp_state) = "AElf.Contracts.TrustChain.TrustChainState";
+  option (aelf.base) = "Protobuf/reference/acs12.proto";
+
+// Actions
+    // Define methods name and input/output.
+    rpc ProposeTransfer (TransferProposal) returns (google.protobuf.Empty);
+    rpc AcceptTransfer (TransferID) returns (google.protobuf.Empty);
+    
+
+    // Views
+    rpc GetPendingProposals (UserAddress) returns (RepeatedTransfer) {
+        option (aelf.is_view) = true;
+    };
+    rpc GetPendingAcceptances (UserAddress) returns (RepeatedTransfer) {
+        option (aelf.is_view) = true;
+    };
+    rpc GetTransfer (TransferID) returns (Transfer) {
+        option (aelf.is_view) = true;
+    }
+}
+
+//2 maps, 1 map for pending proposals, another for pending acceptance
+
+
+message TransferProposal {
+    string tokenid = 1;
+    string to = 2;
+    string from = 3;
+}
+
+message TransferID {
+    string tokenid = 1;
+}
+
+message Transfer {
+    string tokenid = 1;
+    string to = 2;
+    string from = 3;
+    string status = 4;
+}
+
+message RepeatedTransfer {
+    string message = 1;
+    repeated Transfer transfers = 2;
+}
+
+message UserAddress {
+    string value = 1;
+}
