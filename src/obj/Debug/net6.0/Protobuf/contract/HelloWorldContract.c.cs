@@ -20,6 +20,7 @@ namespace AElf.Contracts.TrustChain {
     static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.TransferProposal> __Marshaller_TransferProposal = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.TransferProposal.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.TransferID> __Marshaller_TransferID = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.TransferID.Parser.ParseFrom);
+    static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.UserAddressTokenIDPair> __Marshaller_UserAddressTokenIDPair = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.UserAddressTokenIDPair.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.UserAddress> __Marshaller_UserAddress = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.UserAddress.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.RepeatedString> __Marshaller_RepeatedString = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.RepeatedString.Parser.ParseFrom);
     static readonly aelf::Marshaller<global::AElf.Contracts.TrustChain.Transfer> __Marshaller_Transfer = aelf::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::AElf.Contracts.TrustChain.Transfer.Parser.ParseFrom);
@@ -38,6 +39,13 @@ namespace AElf.Contracts.TrustChain {
         __ServiceName,
         "AcceptTransfer",
         __Marshaller_TransferID,
+        __Marshaller_google_protobuf_Empty);
+
+    static readonly aelf::Method<global::AElf.Contracts.TrustChain.UserAddressTokenIDPair, global::Google.Protobuf.WellKnownTypes.Empty> __Method_RemoveApprovedProposal = new aelf::Method<global::AElf.Contracts.TrustChain.UserAddressTokenIDPair, global::Google.Protobuf.WellKnownTypes.Empty>(
+        aelf::MethodType.Action,
+        __ServiceName,
+        "RemoveApprovedProposal",
+        __Marshaller_UserAddressTokenIDPair,
         __Marshaller_google_protobuf_Empty);
 
     static readonly aelf::Method<global::AElf.Contracts.TrustChain.UserAddress, global::AElf.Contracts.TrustChain.RepeatedString> __Method_GetPendingProposals = new aelf::Method<global::AElf.Contracts.TrustChain.UserAddress, global::AElf.Contracts.TrustChain.RepeatedString>(
@@ -60,6 +68,13 @@ namespace AElf.Contracts.TrustChain {
         "GetTransfer",
         __Marshaller_TransferID,
         __Marshaller_Transfer);
+
+    static readonly aelf::Method<global::AElf.Contracts.TrustChain.UserAddress, global::AElf.Contracts.TrustChain.RepeatedString> __Method_GetApprovedProposals = new aelf::Method<global::AElf.Contracts.TrustChain.UserAddress, global::AElf.Contracts.TrustChain.RepeatedString>(
+        aelf::MethodType.View,
+        __ServiceName,
+        "GetApprovedProposals",
+        __Marshaller_UserAddress,
+        __Marshaller_RepeatedString);
 
     #endregion
 
@@ -95,6 +110,11 @@ namespace AElf.Contracts.TrustChain {
         throw new global::System.NotImplementedException();
       }
 
+      public virtual global::Google.Protobuf.WellKnownTypes.Empty RemoveApprovedProposal(global::AElf.Contracts.TrustChain.UserAddressTokenIDPair input)
+      {
+        throw new global::System.NotImplementedException();
+      }
+
       public virtual global::AElf.Contracts.TrustChain.RepeatedString GetPendingProposals(global::AElf.Contracts.TrustChain.UserAddress input)
       {
         throw new global::System.NotImplementedException();
@@ -110,6 +130,11 @@ namespace AElf.Contracts.TrustChain {
         throw new global::System.NotImplementedException();
       }
 
+      public virtual global::AElf.Contracts.TrustChain.RepeatedString GetApprovedProposals(global::AElf.Contracts.TrustChain.UserAddress input)
+      {
+        throw new global::System.NotImplementedException();
+      }
+
     }
 
     public static aelf::ServerServiceDefinition BindService(TrustChainBase serviceImpl)
@@ -118,9 +143,11 @@ namespace AElf.Contracts.TrustChain {
           .AddDescriptors(Descriptors)
           .AddMethod(__Method_ProposeTransfer, serviceImpl.ProposeTransfer)
           .AddMethod(__Method_AcceptTransfer, serviceImpl.AcceptTransfer)
+          .AddMethod(__Method_RemoveApprovedProposal, serviceImpl.RemoveApprovedProposal)
           .AddMethod(__Method_GetPendingProposals, serviceImpl.GetPendingProposals)
           .AddMethod(__Method_GetPendingAcceptances, serviceImpl.GetPendingAcceptances)
-          .AddMethod(__Method_GetTransfer, serviceImpl.GetTransfer).Build();
+          .AddMethod(__Method_GetTransfer, serviceImpl.GetTransfer)
+          .AddMethod(__Method_GetApprovedProposals, serviceImpl.GetApprovedProposals).Build();
     }
 
   }

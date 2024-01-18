@@ -15,6 +15,7 @@ namespace AElf.Contracts.TrustChain
         // This is because our testnet does not allow the deployment of two identical contracts.
         const string author = "test_1";
 
+        // Send Methods
         public override Empty ProposeTransfer(TransferProposal input)
         {
             var transfer = new Transfer {
@@ -62,6 +63,15 @@ namespace AElf.Contracts.TrustChain
             return new Empty();
         }
 
+        public override Empty RemoveApprovedProposal(UserAddressTokenIDPair input) {
+            if (State.ApprovedProposals[input.Address] == null) {
+                return new Empty();
+            }
+            State.ApprovedProposals[input.Address]?.Values.Remove(input.Tokenid);
+            return new Empty();
+        }
+
+        // View Methods
         public override RepeatedString GetPendingProposals(UserAddress input)
         {
             var pendingProposals = State.Proposals[input.Value] ?? new RepeatedString();
@@ -80,5 +90,13 @@ namespace AElf.Contracts.TrustChain
         {
             return State.Transfers[input.Tokenid];
         }
+
+        public override RepeatedString GetApprovedProposals(UserAddress input)
+        {
+            var approvedProposals = State.ApprovedProposals[input.Value] ?? new RepeatedString();
+
+            return approvedProposals;
+        }
+
     }
 }

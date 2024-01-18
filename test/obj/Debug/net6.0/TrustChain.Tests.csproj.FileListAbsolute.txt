@@ -274,3 +274,4 @@ C:\Users\chuaj\Workspace\trustchain-smart-contract\test\obj\Debug\net6.0\refint\
 C:\Users\chuaj\Workspace\trustchain-smart-contract\test\obj\Debug\net6.0\TrustChain.Tests.pdb
 C:\Users\chuaj\Workspace\trustchain-smart-contract\test\obj\Debug\net6.0\TrustChain.Tests.genruntimeconfig.cache
 C:\Users\chuaj\Workspace\trustchain-smart-contract\test\obj\Debug\net6.0\ref\TrustChain.Tests.dll
+C:\Users\chuaj\Workspace\trustchain-smart-contract\test\obj\Debug\net6.0\TrustChain.Tests.sourcelink.json

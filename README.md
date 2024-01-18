@@ -10,9 +10,10 @@ class/ called message in proto3
 1. Transfer (basically contains all the transfer info like what token, from who to who, and the status of the transfer, pending or accepted)
 
 dictionary/States:
-1. All transfers: Map of NFT Symbol to Transfer Class
-2. All pending for: Map of User Address to NFT Symbol
-3. All pending by: Map of User Address to NFT Symbol
+1. transfers: Map of NFT Symbol to Transfer Class
+2. pending for: Map of User Address to NFT Symbol
+3. pending by: Map of User Address to NFT Symbol
+4. ApprovedTransfers: Map of User Address to NFT Symbol
 
 Functions
 1. ProposeTransfer
@@ -38,6 +39,16 @@ shows you all the NFT symbols that other ppl propose to you and are pending your
 5. GetTransfer
 input: NFT Symbol
 output: transfer class
+
+6. GetApprovedProposals
+input: your address
+output:
+shows you all the NFT symbols that you proposed to transfer and has been accepted by the other party
+
+7. RemoveApprovedProposal
+input: your address + NFT symbol
+output:
+Removes the NFT symbol from your ApprovedProposals MappedState
 
 ## Built with
 - c#

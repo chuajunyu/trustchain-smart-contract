@@ -17,6 +17,8 @@ service TrustChain {
     // Define methods name and input/output.
     rpc ProposeTransfer (TransferProposal) returns (google.protobuf.Empty);
     rpc AcceptTransfer (TransferID) returns (google.protobuf.Empty);
+    // rpc RejectTransfer (TransferID) returns (google.protobuf.Empty);
+    rpc RemoveApprovedProposal (UserAddressTokenIDPair) returns (google.protobuf.Empty);
     
 
     // Views
@@ -27,6 +29,9 @@ service TrustChain {
         option (aelf.is_view) = true;
     };
     rpc GetTransfer (TransferID) returns (Transfer) {
+        option (aelf.is_view) = true;
+    }
+    rpc GetApprovedProposals (UserAddress) returns (RepeatedString) {
         option (aelf.is_view) = true;
     }
 }
@@ -62,4 +67,9 @@ message RepeatedString {
 
 message UserAddress {
     string value = 1;
+}
+
+message UserAddressTokenIDPair {
+    string address = 1;
+    string tokenid = 2;
 }
